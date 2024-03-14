@@ -15,12 +15,12 @@ echo "Running integration tests: started and completed"
 }
 post {
 success {
-mail to: 'rahul4825.be22@chitkara.edu.in',
+mail to: 'ketan4803.be22@chitkara.edu.in',
 subject: 'Unit and Integration Tests: Success',
 body: 'The unit and integration tests have passed. See attached logs for details.'
 }
 failure {
-mail to: 'rahul4825.be22@chitkara.edu.in',
+mail to: 'ketan4803.be22@chitkara.edu.in',
 subject: 'Unit and Integration Tests: Failed',
 body: 'The unit and integration tests have failed. See attached logs for details.'
 }
@@ -37,12 +37,12 @@ echo "Performing security scan: started and completed"
 }
 post {
 success {
-mail to: 'rahul4825.be22@chitkara.edu.in',
+mail to: 'ketan4803.be22@chitkara.edu.in',
 subject: 'Security Scan: Success',
 body: 'The security scan has passed. See attached logs for details.'
 }
 failure {
-mail to: 'rahul4825.be22@chitkara.edu.in',
+mail to: 'ketan4803.be22@chitkara.edu.in',
 subject: 'Security Scan: Failed',
 body: 'The security scan has failed. See attached logs for details.'
 }
@@ -59,12 +59,12 @@ echo "Running integration tests on staging: started and completed"
 }
 post {
 success {
-mail to: 'rahul4825.be22@chitkara.edu.in',
+mail to: 'ketan4803.be22@chitkara.edu.in',
 subject: 'Integration Tests on Staging: Success',
 body: 'The integration tests on staging have passed. See attached logs for details.'
 }
 failure {
-mail to: 'rahul4825.be22@chitkara.edu.in',
+mail to: 'ketan4803.be22@chitkara.edu.in',
 subject: 'Integration Tests on Staging: Failed',
 body: 'The integration tests on staging have failed. See attached logs for details.'
 }
