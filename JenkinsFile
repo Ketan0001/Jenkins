@@ -1,0 +1,102 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                build()
+            }
+        }
+        stage('Unit and Integration Tests') {
+            steps {
+                runUnitTests()
+                runIntegrationTests()
+            }
+            post {
+                success {
+                    sendMail('Unit and Integration Tests Success', 'ketan4803.be22@chitkara.edu.in')
+                }
+                failure {
+                    sendMail('Unit and Integration Tests Failed', 'ketan4803.be22@chitkara.edu.in')
+                }
+            }
+        }
+        stage('Code Analysis') {
+            steps {
+                runCodeAnalysis()
+            }
+        }
+        stage('Security Scan') {
+            steps {
+                runSecurityScan()
+            }
+            post {
+                success {
+                    sendMail('Security Scan Success', 'ketan4803.be22@chitkara.edu.in')
+                }
+                failure {
+                    sendMail('Security Scan Failed', 'ketan4803.be22@chitkara.edu.in')
+                }
+            }
+        }
+        stage('Deploy to Staging') {
+            steps {
+                deployToStaging()
+            }
+        }
+        stage('Integration Tests on Staging') {
+            steps {
+                runIntegrationTestsOnStaging()
+            }
+            post {
+                success {
+                    sendMail('Integration Tests on Staging Success', 'ketan4803.be22@chitkara.edu.in')
+                }
+                failure {
+                    sendMail('Integration Tests on Staging Failed', 'ketan4803.be22@chitkara.edu.in')
+                }
+            }
+        }
+        stage('Deploy to Production') {
+            steps {
+                deployToProduction()
+            }
+        }
+    }
+}
+
+def build() {
+    echo "Fetching the source code from GitHub"
+    echo "Compiling the code and generating artifacts."
+}
+
+def runUnitTests() {
+    echo "Running unit tests started and completed"
+}
+
+def runIntegrationTests() {
+    echo "Running integration tests started and completed"
+}
+
+def runCodeAnalysis() {
+    echo "Running Code Analysis started and completed"
+}
+
+def runSecurityScan() {
+    echo "Running Security Scan started and completed"
+}
+
+def deployToStaging() {
+    echo "Running Deploy to Staging started and completed"
+}
+
+def runIntegrationTestsOnStaging() {
+    echo "Running Integration Tests on Staging started and completed"
+}
+
+def deployToProduction() {
+    echo "Running Integration Tests on Staging started and completed"
+}
+
+def sendMail(subject, to) {
+    mail to: to, subject: subject, body: "The $subject. Find attached logs for more information."
+}
