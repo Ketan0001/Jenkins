@@ -1,102 +1,79 @@
+
 pipeline {
-    agent any
-    stages {
-        stage('Build') {
-            steps {
-                build()
-            }
-        }
-        stage('Unit and Integration Tests') {
-            steps {
-                runUnitTests()
-                runIntegrationTests()
-            }
-            post {
-                success {
-                    sendMail('Unit and Integration Tests Success', 'ketan4803.be22@chitkara.edu.in')
-                }
-                failure {
-                    sendMail('Unit and Integration Tests Failed', 'ketan4803.be22@chitkara.edu.in')
-                }
-            }
-        }
-        stage('Code Analysis') {
-            steps {
-                runCodeAnalysis()
-            }
-        }
-        stage('Security Scan') {
-            steps {
-                runSecurityScan()
-            }
-            post {
-                success {
-                    sendMail('Security Scan Success', 'ketan4803.be22@chitkara.edu.in')
-                }
-                failure {
-                    sendMail('Security Scan Failed', 'ketan4803.be22@chitkara.edu.in')
-                }
-            }
-        }
-        stage('Deploy to Staging') {
-            steps {
-                deployToStaging()
-            }
-        }
-        stage('Integration Tests on Staging') {
-            steps {
-                runIntegrationTestsOnStaging()
-            }
-            post {
-                success {
-                    sendMail('Integration Tests on Staging Success', 'ketan4803.be22@chitkara.edu.in')
-                }
-                failure {
-                    sendMail('Integration Tests on Staging Failed', 'ketan4803.be22@chitkara.edu.in')
-                }
-            }
-        }
-        stage('Deploy to Production') {
-            steps {
-                deployToProduction()
-            }
-        }
-    }
+agent any
+stages {
+stage('Build') {
+steps {
+echo "Fetching the source code from the repository"
+echo "Compiling the code and generating artifacts"
 }
-
-def build() {
-    echo "Fetching the source code from GitHub"
-    echo "Compiling the code and generating artifacts."
 }
-
-def runUnitTests() {
-    echo "Running unit tests started and completed"
+stage('Unit and Integration Tests') {
+steps {
+echo "Running unit tests: started and completed"
+echo "Running integration tests: started and completed"
 }
-
-def runIntegrationTests() {
-    echo "Running integration tests started and completed"
+post {
+success {
+mail to: 'rahul4825.be22@chitkara.edu.in',
+subject: 'Unit and Integration Tests: Success',
+body: 'The unit and integration tests have passed. See attached logs for details.'
 }
-
-def runCodeAnalysis() {
-    echo "Running Code Analysis started and completed"
+failure {
+mail to: 'rahul4825.be22@chitkara.edu.in',
+subject: 'Unit and Integration Tests: Failed',
+body: 'The unit and integration tests have failed. See attached logs for details.'
 }
-
-def runSecurityScan() {
-    echo "Running Security Scan started and completed"
 }
-
-def deployToStaging() {
-    echo "Running Deploy to Staging started and completed"
 }
-
-def runIntegrationTestsOnStaging() {
-    echo "Running Integration Tests on Staging started and completed"
+stage('Code Analysis') {
+steps {
+echo "Performing code analysis: started and completed"
 }
-
-def deployToProduction() {
-    echo "Running Integration Tests on Staging started and completed"
 }
-
-def sendMail(subject, to) {
-    mail to: to, subject: subject, body: "The $subject. Find attached logs for more information."
+stage('Security Scan') {
+steps {
+echo "Performing security scan: started and completed"
+}
+post {
+success {
+mail to: 'rahul4825.be22@chitkara.edu.in',
+subject: 'Security Scan: Success',
+body: 'The security scan has passed. See attached logs for details.'
+}
+failure {
+mail to: 'rahul4825.be22@chitkara.edu.in',
+subject: 'Security Scan: Failed',
+body: 'The security scan has failed. See attached logs for details.'
+}
+}
+}
+stage('Deploy to Staging') {
+steps {
+echo "Deploying to staging: started and completed"
+}
+}
+stage('Integration Tests on Staging') {
+steps {
+echo "Running integration tests on staging: started and completed"
+}
+post {
+success {
+mail to: 'rahul4825.be22@chitkara.edu.in',
+subject: 'Integration Tests on Staging: Success',
+body: 'The integration tests on staging have passed. See attached logs for details.'
+}
+failure {
+mail to: 'rahul4825.be22@chitkara.edu.in',
+subject: 'Integration Tests on Staging: Failed',
+body: 'The integration tests on staging have failed. See attached logs for details.'
+}
+}
+}
+stage('Deploy to Production') {
+steps {
+echo "Deploying to production: started and completed"
+}
+}
+}
 }
