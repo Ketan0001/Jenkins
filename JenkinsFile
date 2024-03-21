@@ -26,11 +26,7 @@ body: 'The unit and integration tests have failed. See attached logs for details
 }
 }
 }
-stage('Code Analysis') {
-steps {
-echo "Performing code analysis: started and completed"
-}
-}
+
 stage('Security Scan') {
 steps {
 echo "Performing security scan: started and completed"
@@ -48,28 +44,8 @@ body: 'The security scan has failed. See attached logs for details.'
 }
 }
 }
-stage('Deploy to Staging') {
-steps {
-echo "Deploying to staging: started and completed"
-}
-}
-stage('Integration Tests on Staging') {
-steps {
-echo "Running integration tests on staging: started and completed"
-}
-post {
-success {
-mail to: 'ketan4803.be22@chitkara.edu.in',
-subject: 'Integration Tests on Staging: Success',
-body: 'The integration tests on staging have passed. See attached logs for details.'
-}
-failure {
-mail to: 'ketan4803.be22@chitkara.edu.in',
-subject: 'Integration Tests on Staging: Failed',
-body: 'The integration tests on staging have failed. See attached logs for details.'
-}
-}
-}
+
+
 stage('Deploy to Production') {
 steps {
 echo "Deploying to production: started and completed"
