@@ -21,6 +21,9 @@ body: 'The unit and integration tests have passed. See attached logs for details
 }
 failure {
 mail to: 'ketan4803.be22@chitkara.edu.in',
+mail to: 'jithakur1004@gmail.com',
+mail to: 'sarvjeet.singh@chitkara.edu.in'
+mail to: 'arjunbhardwaj219@gmail.com',
 subject: 'Unit and Integration Tests: Failed',
 body: 'The unit and integration tests have failed. See attached logs for details.'
 }
